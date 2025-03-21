@@ -76,3 +76,45 @@ function printnum(n){
 
     }
 }
+
+console.log("------------Part 2 Thinking Methodically---------------")
+
+const newArray = [{ id: "42", name: "Bruce", occupation: "Knight", age: "41" },
+    { id: "48", name: "Barry", occupation: "Runner", age: "25" },
+    { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" },
+    { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
+    { id: "7", name: "Bilbo", occupation: "None", age: "111" }];
+
+            newArray.sort((val1, val2) => {  //sorting the array wrt age in ascending order
+                return val1.age - val2.age
+            });
+console.log(newArray);
+
+function filterbyAge( newArray){ //filtering the elements which has age > 50 from the array
+return newArray.filter(element => element.age <=50);
+}
+console.log(filterbyAge(newArray));
+
+function mapOccupationToJob(newArray){ //map method to create a new array with occupation replaced with job and age incremented by 1
+     let tempArray = newArray.map(element => {
+        const {occupation, age, ...rest} = element;
+        return {...rest, age:parseInt(age)+1, job:occupation}
+    });
+    
+     return tempArray;
+}
+console.log(mapOccupationToJob(newArray));
+
+
+function getSumOfAge(a){
+    const totalAge =  a.reduce((accumulator, currentValue)=>{ //reduce method to ge the sum and average of age in an object array
+        accumulator.ageSum +=  parseInt(currentValue.age);
+       accumulator.count ++;
+       return accumulator;
+    },{ageSum:0, count:0});
+    let averageAge = totalAge.ageSum/totalAge.count;
+    console.log("Total age:"+ totalAge.ageSum);
+    console.log("Averageage"+averageAge);
+
+}
+getSumOfAge(newArray);
