@@ -118,3 +118,45 @@ function getSumOfAge(a){
 
 }
 getSumOfAge(newArray);
+
+console.log("=========================Part 3 Thinking critically=========================")
+
+let newArray2 = [
+    { id: '57', name: 'Bob', occupation: 'Fry Cook', age: 21 },
+    { id: '48', name: 'Barry', occupation: 'Runner'}]
+
+function incrementAge(array) {
+    let newArray1 = [...array];
+    newArray1.forEach(element => {
+        if (!element.hasOwnProperty('age')) {  // Check if the current object has the 'age' property
+            element.age = 0;
+        } else {
+            element.age = parseInt(element.age) + 1;
+        }
+        let updatedAt = new Date();
+        element.updated_at = updatedAt.toLocaleString();
+    });
+
+    return newArray1;  // Return the  array
+}
+
+console.log(incrementAge(newArray2));
+
+function incrementAge1(array)
+{
+    let ageArray = JSON.parse(JSON.stringify(array)); 
+    ageArray.forEach(element => {
+        if (!element.hasOwnProperty('age')) {  // Check if the current object has the 'age' property
+            element.age = 0;
+        } else {
+            element.age = parseInt(element.age) + 1;
+        }
+        let updatedAt = new Date(); 
+        updatedAt.setFullYear(2025)
+        element.updated_at = updatedAt.toLocaleString();
+    });
+    return ageArray;
+    }
+
+console.log(incrementAge1(newArray));
+console.log(newArray);
